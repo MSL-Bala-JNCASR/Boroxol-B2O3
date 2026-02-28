@@ -1,0 +1,81 @@
+{
+    "_comment": " DeePMD-kit v2.2.10 ",
+    "model": {
+	"type_map":	["B", "O"],
+	"descriptor" :{
+	    "type":		"se_e2_a",
+	    "sel":		[100, 50],
+	    "rcut_smth":	0.5,
+	    "rcut":		6.00,
+	    "neuron":		[25, 50, 100],
+	    "resnet_dt":	false,
+	    "axis_neuron":	16,
+	    "seed":		9965487,
+	    "_comment":		" that's all"
+	},
+	"fitting_net" : {
+	    "neuron":		[250, 250, 250],
+	    "resnet_dt":	true,
+	    "seed":		9965487,
+	    "_comment":		" that's all"
+	},
+	"_comment":	" that's all"
+    },
+
+    "learning_rate" :{
+	"type":		"exp",
+	"decay_steps":	5000,
+	"start_lr":	0.005,	
+	"stop_lr":	1.76e-7,
+	"_comment":	"that's all"
+    },
+
+    "loss" :{
+	"type":		"ener",
+	"start_pref_e":	0.02,
+	"limit_pref_e":	1,
+	"start_pref_f":	1000,
+	"limit_pref_f":	1,
+	"_comment":	" that's all"
+    },
+
+    "training" : {
+	"training_data": {
+	    "set_prefix":      "../../1_data/",
+	    "systems":		[
+                                 "../../1_data/dataset1/train/npy",
+				 "../../1_data/dataset2/train/npy",
+				 "../../1_data/dataset3/train/npy",
+				 "../../1_data/dataset4/train/npy",
+				 "../../1_data/dataset5/train/npy",
+				 "../../1_data/dataset6/train/npy"
+		                ],
+
+	    "batch_size":	"auto",
+	    "auto_prob" :       "prob_sys_size; 0:2:0.25; 2:4:0.40; 4:5:0.35" ,
+	    "_comment":		"that's all"
+	},
+	"validation_data":{
+	    "set_prefix":      "../../1_data/",
+	    "systems":		[
+                                 "../../1_data/dataset1/val/npy",
+				 "../../1_data/dataset2/val/npy",
+				 "../../1_data/dataset3/val/npy",
+				 "../../1_data/dataset4/val/npy",
+				 "../../1_data/dataset5/val/npy",
+				 "../../1_data/dataset6/val/npy"
+				],
+	    "batch_size":	"auto",
+	    "_comment":		"that's all"
+	},
+	"numb_steps":	2000000,
+	"seed":		9965487,
+	"disp_file":	"lcurve.out",
+	"disp_freq":	10,
+	"save_freq":	1000,
+	"_comment":	"that's all"
+    },    
+
+    "_comment":		"that's all"
+}
+

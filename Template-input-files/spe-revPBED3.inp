@@ -1,0 +1,121 @@
+
+! CP2K version 7.1
+
+
+@SET cellf abc.incl
+@SET conf coord.xyz
+
+&FORCE_EVAL
+  METHOD QS
+
+  STRESS_TENSOR ANALYTICAL
+
+  ## print stuff to files
+  &PRINT
+    &FORCES
+    &END 
+    &STRESS_TENSOR 
+    &END
+  &END PRINT
+
+  ## DFT calculation  
+  &DFT
+    BASIS_SET_FILE_NAME BASIS_MOLOPT
+    BASIS_SET_FILE_NAME GTH_BASIS_SETS
+    POTENTIAL_FILE_NAME POTENTIAL
+
+    &PRINT
+      &MULLIKEN OFF
+      &END MULLIKEN
+    &END PRINT
+
+    &MGRID
+      NGRIDS 5
+      CUTOFF 1200          
+      REL_CUTOFF 60        
+    &END MGRID
+
+    &QS
+      METHOD      GPW
+      EPS_DEFAULT 1.0E-14     
+      WF_INTERPOLATION ASPC   
+    &END QS
+
+    &SCF
+	MAX_SCF         20        
+        EPS_SCF         1.0E-7   
+        SCF_GUESS       RESTART
+        &OT
+           MINIMIZER       CG
+           !PRECONDITIONER  FULL_ALL
+           !ENERGY_GAP      0.001
+        &END OT
+        &OUTER_SCF
+           TYPE            NONE      
+           MAX_SCF         40         
+           EPS_SCF         1.0E-7   
+        &END OUTER_SCF
+    &END
+
+    &XC
+      &XC_FUNCTIONAL
+	&PBE
+		PARAMETRIZATION REVPBE  
+	&END PBE
+      &END XC_FUNCTIONAL
+      
+      &VDW_POTENTIAL
+        POTENTIAL_TYPE                  PAIR_POTENTIAL
+        &PAIR_POTENTIAL
+           TYPE                     DFTD3
+           CALCULATE_C9_TERM       .FALSE.              
+           REFERENCE_C9_TERM       .FALSE.            
+           PARAMETER_FILE_NAME     dftd3.dat
+	   REFERENCE_FUNCTIONAL    revPBE            
+           R_CUTOFF                40.0            
+        &END PAIR_POTENTIAL
+      &END VDW_POTENTIAL
+    &END XC
+
+  &END DFT
+
+  ## System coordinates
+  &SUBSYS
+    &CELL
+      @INCLUDE ${cellf} 
+    &END CELL
+    
+    &COORD
+	@INCLUDE ${conf}
+    &END COORD
+    
+    &KIND B
+      BASIS_SET DZVP-MOLOPT-SR-GTH                         
+      POTENTIAL GTH-PBE-q3
+    &END KIND
+    &KIND O
+      BASIS_SET DZVP-MOLOPT-SR-GTH
+      POTENTIAL GTH-PBE-q6
+    &END KIND 
+
+    ## print stuff to log file
+    &PRINT
+      &ATOMIC_COORDINATES
+      &END
+      &MOLECULES
+      &END
+    &END PRINT
+
+  &END SUBSYS
+&END FORCE_EVAL
+
+&GLOBAL
+  PROJECT B2O3_data
+  RUN_TYPE ENERGY_FORCE
+  PRINT_LEVEL MEDIUM
+&END GLOBAL
+
+!&ext_restart
+!        restart_file_name H2O_data.restart
+!&end ext_restart
+

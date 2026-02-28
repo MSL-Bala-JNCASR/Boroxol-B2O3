@@ -1,0 +1,60 @@
+### NVT at 2400 to 2400 simulation for testing ML-26 of B2O3 ###
+
+boundary p p p
+units metal
+atom_style full
+
+#################### VARIABLES ####################
+variable tstep equal 0.001                   		# timestep in fs
+variable ramp_time equal 1000000                 	# heating the system 
+variable outfreq equal 100		    		#thermo styel printing at 0.1ps
+variable trajfreq equal 1000		   		#trajectory saving frequency at 1ps	
+variable RandomSeed equal 1546321
+variable tinit equal	 2400
+variable tfin	equal	2400
+
+#################### ATOM DEFINITION and FORCEFIELD ####################
+read_data	1.data	
+
+#################### SETTINGS ####################
+neighbor 0.4 bin
+neigh_modify every 2 delay 0 check yes
+pair_style	deepmd 1.pb 2.pb 3.pb 4.pb out_freq 20 out_file model_devi.out
+pair_coeff  * *	
+
+
+
+################################ COOLING ###########################################
+velocity all create ${tinit} ${RandomSeed}
+fix 	3 all nvt temp ${tinit} ${tfin} 0.1 	
+timestep ${tstep}
+thermo_style custom step temp press pe ke etotal vol density cpuremain
+thermo ${outfreq}
+# dump in xtc for GROMACS analysis
+dump		dxtc3 all xtc ${outfreq} b2o3_ramp_ML_26_2400.xtc 
+dump_modify     dxtc3 precision 1000000
+# dump frequently for analysis
+dump		h5 all custom 10000 traj_heat/*.lammpstrj id type x y z 
+dump_modify     h5 sort id
+dump		h6 all custom ${outfreq} vis_b2o3_ramp_ML_26.dump id type xu yu zu
+dump_modify     h6 sort id
+
+variable Pe equal pe
+fix PeNVT all ave/time 1 1 ${outfreq} v_Pe file nvt-pe_ML_26.dat
+
+variable Te equal etotal
+fix TeNVT all ave/time 1 1 ${outfreq} v_Te file nvt-te_ML_26.dat
+
+variable Dens equal density
+fix DensIns all ave/time 1 1 ${outfreq} v_Dens file nvt-density_ML_26.dat
+
+variable Temp equal temp
+fix TempIns all ave/time 1 1 ${outfreq} v_Temp file nvt-temperature_ML_26.dat
+
+variable Pres equal press
+fix PresIns all ave/time 1 1 ${outfreq} v_Pres file nvt-pressure_ML_26.dat
+
+run	${ramp_time}
+
+write_data NVT_ML_26_2400.data
+write_restart NVT_ML_26_2400.restart
