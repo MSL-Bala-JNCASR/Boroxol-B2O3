@@ -1,18 +1,18 @@
 GENERAL INFORMATION
 
-Title of Dataset: Data from "On the Boroxol Ring Fraction in Melt-Quenched B2 O3 Glass: Insights from Machine Learning Potentials"
+Title of Dataset: Data from "On the Boroxol Ring Fraction in Melt-Quenched B2O3 Glass: Insights from Machine Learning Potentials"
 
 Author Information 
 
 A. Principal Investigator Contact Information Names:
  
-Sundaram Balasubramanian, Chemistry and Physics Of Materials Unit, Jawaharlal Nehru Centre for Advanced Scientific Research (JNCASR) Address: Molecular Simulation Lab, CPMU, JNCASR, Jakkur, Bengaluru, Karnataka 560064, India Emails: bala@jncasr.ac.in
+Sundaram Balasubramanian, Chemistry and Physics of Materials Unit, Jawaharlal Nehru Centre for Advanced Scientific Research (JNCASR) Address: Molecular Simulation Lab, CPMU, JNCASR, Jakkur, Bengaluru, Karnataka 560064, India Emails: bala@jncasr.ac.in
 
 B. Associate or Co-investigator Contact Information 
 
-(1). Debendra Meher,  Chemistry and Physics Of Materials Unit, Jawaharlal Nehru Centre for Advanced Scientific Research (JNCASR) Address: Molecular Simulation Lab, CPMU, JNCASR, Jakkur, Bengaluru, Karnataka 560064, India, Email: debendram@jncasr.ac.in 
+(1). Debendra Meher,  Chemistry and Physics of Materials Unit, Jawaharlal Nehru Centre for Advanced Scientific Research (JNCASR) Address: Molecular Simulation Lab, CPMU, JNCASR, Jakkur, Bengaluru, Karnataka 560064, India, Email: debendram@jncasr.ac.in 
 
-(2). Nikhil V. S. Avula,  Chemistry and Physics Of Materials Unit, Jawaharlal Nehru Centre for Advanced Scientific Research (JNCASR) Address: Molecular Simulation Lab, CPMU, JNCASR, Jakkur, Bengaluru, Karnataka 560064, India, Emails: nikhil@jncasr.ac.in
+(2). Nikhil V. S. Avula,  Chemistry and Physics of Materials Unit, Jawaharlal Nehru Centre for Advanced Scientific Research (JNCASR) Address: Molecular Simulation Lab, CPMU, JNCASR, Jakkur, Bengaluru, Karnataka 560064, India, Emails: nikhil@jncasr.ac.in
 
 
 Geographic location of data collection: Jakkur, Bengaluru, Karnataka 560064, India
