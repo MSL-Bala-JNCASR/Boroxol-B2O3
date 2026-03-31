@@ -29,5 +29,9 @@ DP_models : 4 independent DP models for 6 and 9 angstrom cutoff (frozen .pb file
 
 Template-input-files: Sample input files for DP training, MD with LAMMPS, CP2K single point energy calculations
 
-This repository contains the data and trained models associated with the study:
+This repository contains the data and trained models associated with the study: 
+
+Debendra Meher, Nikhil V. S. Avula, Sundaram Balasubramanian; On the boroxol ring fraction in melt-quenched B2O3 glass: Insights from machine learning potentials. J. Chem. Phys. 28 March 2026; 164 (12): 124504. 
+
+https://doi.org/10.1063/5.0321441  
 
